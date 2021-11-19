@@ -1,0 +1,8 @@
+USE AS A SCHEDULED TASK:
+
+1. Open Task Scheduler
+2. Click "New task" on the right-hand side
+3. Name the task, under securtiy options check "run whether logged in or not" and "run under highest privileges" and set OS as Windows 10
+4. On Triggers tab, add the schedule you want to run this script. Ex., Every second Monday of the month at noon to disable devices
+5. On Actions tab type Powershell.exe for the program to launch, under arguments type: 
+  -ExecutionPolicy Bypass [path to your script]\FilePruner.ps1 -Threshold [however many days back you want to go] -Path [path to prune]
