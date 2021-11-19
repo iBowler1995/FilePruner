@@ -15,13 +15,11 @@
 	from use is on the user.
     ===========================================================================
     .PARAMETER Threshold
-    This parameter is an integer - specifies the target age to delete. Required ALWAYS
+    This parameter is an integer and required - specifies the target age to delete. Required ALWAYS
     .PARAMETER Path
-    This parameter is a string - specifies the directory to prune. Required ONLY if NOT using -File switch. If using -File switch do not use this parameter.
+    This parameter is a string and required - specifies either the directory to prune or the file containing directories if -File switch is in use. 
     .PARAMETER File
     This parameter is optional and for use if you want to put multiple directories in a file to have read
-    .PARAMETER FilePath
-    This parameter is required ONLY if you use the File parameter. If you don't use the File parameter, don't use this parameter
     .EXAMPLES
     FilePruner.ps1 -Threshold 15 -Path "C:\Windows\Temp" <- This will delete all files and folders older than 15 days at "C:\Windows\Temp"
     FilePruner.pS1 -Threshold 15 -File -Path "C:\Temp\Directories.txt" <- This will delete all files and folders older than 15 days in each of the directors in C:\Temp\Directories.txt
