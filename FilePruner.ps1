@@ -72,13 +72,14 @@ else{
     Try{
     Get-ChildItem -Path $path -Recurse | Where-Object {($_.LastWriteTime -le $Age)} |
         Remove-Item -Force -Recurse -ErrorAction SilentlyContinue
+    Get-ChildItem -Path $Path -Recurse -Force |
+        Where-Object {$_.PSIsContainer -and (Get-ChildItem -Path $_.FullName -Recurse -Force |
+        Where-Object {!$_.PSIsContainer}) -eq $null } |
+        Remove-Item -Force -Recurse  -ErrorAction SilentlyContinue
     }
     Catch{
         $Error[0].Exception.InnerException | out-file .\ErrorLog.log -Append
     } 
 
-    Get-ChildItem -Path $Path -Recurse -Force |
-        Where-Object {$_.PSIsContainer -and (Get-ChildItem -Path $_.FullName -Recurse -Force |
-        Where-Object {!$_.PSIsContainer}) -eq $null } |
-        Remove-Item -Force -Recurse   
+    
 }
